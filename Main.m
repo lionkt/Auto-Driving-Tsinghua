@@ -1,17 +1,9 @@
-%Main - Calculate the convert rate at crossroads (no VMS)
-%
-% Syntax:  [~] = Main(curDay)
-%
-% Inputs:
-%    curDay - Current day(args)        
-%
-% Outputs:
-%    none
+%Main - Core console
 %
 % Example: 
 %    none
 %
-% Other m-files required: turningChoice.mat, complianceRate.mat
+% Other m-files required: none
 % Subfunctions: none
 % MAT-files required: none
 %
@@ -20,7 +12,7 @@
 % Author: Bai Liu
 % Department of Automation, Tsinghua University 
 % email: liubaichn@126.com
-% 2016.02; Last revision: 2016.02.10
+% 2017.02; Last revision: 2017.04.18
 
 %------------- BEGIN CODE --------------
 
@@ -29,39 +21,31 @@ tic;
 
 %--- System setting ---
 clc;
+clear global;
 warning off;
 
-%--- Set global variables ---
-InitializeGlobal()
+%--- Set global variable(s) ---
+InitializeGlobal();
 
-%--- Train the turning strategy ---
-SingleAgentQL();
+%--- Test road simulation ---
+XroadSimulation();
 
-%--- Test the turning strategy ---
-% TurningSimulation();
+%--- Train and test single agent turning strategy ---
+% OptSingleTurning();
+% TestSingleTurning();
 
-% %--- Do Simulation ---
-% % Set parameters
-% startTime = 0;
-% endTime = 100;
-% timeStep = 1;
-% % Begin Simulation
-% curID = 0;
-% for curTime = startTime:timeStep:endTime
-% 	for i = 1:1:CalVehicleNum()
-% 		[newVehicle, curID] = GenerateVehicle(curID);
-% 		AddVehicle(newVehicle);
-% 	end
-% 	XroadSimulation();
-	
-% end
+%--- Train and test multi-agent turning strategy ---
+% OptMultiTurning();
+% TestMultiTurning();
+
+%--- Train and test traffic signal strategy ---
+% OptSignal();
+% TestSignal();
+
+%--- Investigate how multiple factors impact the optimization effect ---
+% InvestigateEffect();
 
 %--- Stop timing ---
 toc;
 
 %------------- END OF CODE --------------
-
-
-
-
-

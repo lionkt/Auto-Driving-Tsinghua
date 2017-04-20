@@ -1,0 +1,4 @@
+# Ignore .mat file(s)
+*.mat
+*.fig
+*.html
